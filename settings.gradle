@@ -23,3 +23,4 @@ rootProject.name = "SimpleWeather"
 include ':app'
 include ':base'
 include ':data'
+include ':domain'

@@ -10,8 +10,8 @@ class WeatherRepositoryImpl(
 ) : BaseRepository(ioDispatcher), WeatherRepository {
 
     override suspend fun getCurrentWeather(
-        key: String,
+        apiKey: String,
         city: String
-    ) = fetchRemote(weatherDataSource.getCurrentWeather(key, city))
+    ) = fetchRemote(weatherDataSource.getCurrentWeather(apiKey, city))
 
 }

@@ -9,7 +9,7 @@ interface WeatherDataSource {
 
     @GET("current.json")
     suspend fun getCurrentWeather(
-        @Query("key") key: String,
+        @Query("key") apiKey: String,
         @Query("q") city: String,
     ): ApiResponse<WeatherResponse>
 

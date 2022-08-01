@@ -5,5 +5,5 @@ import com.joko.data.remote.weather.WeatherResponse
 import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {
-    suspend fun getCurrentWeather(key: String, city: String): Flow<Resource<WeatherResponse>>
+    suspend fun getCurrentWeather(apiKey: String, city: String): Flow<Resource<WeatherResponse>>
 }
