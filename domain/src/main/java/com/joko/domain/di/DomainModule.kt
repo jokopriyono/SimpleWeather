@@ -1,6 +1,7 @@
 package com.joko.domain.di
 
 import com.joko.data.di.DataSourceModule
+import com.joko.data.di.RepositoryModule
 import com.joko.data.repository.WeatherRepository
 import com.joko.domain.usecase.WeatherUseCase
 import com.joko.domain.usecase.WeatherUseCaseImpl
@@ -11,7 +12,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [DataSourceModule::class])
+@Module(includes = [DataSourceModule::class, RepositoryModule::class])
 @InstallIn(SingletonComponent::class)
 object DomainModule {
 
