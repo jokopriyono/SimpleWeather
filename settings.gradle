@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "SimpleWeather"
 include ':app'
 include ':base'
+include ':data'
