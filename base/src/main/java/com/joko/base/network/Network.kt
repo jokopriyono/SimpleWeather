@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit
 
 fun createOkHttpClient(
     baseUrl: String,
-    email: String?,
-    token: String?,
-    onTokenUpdated: (String) -> Unit
+    email: String? = null,
+    token: String? = null,
+    onTokenUpdated: (String) -> Unit = {}
 ): OkHttpClient {
     val builder = if (token != null) {
         OkHttpClient.Builder()
