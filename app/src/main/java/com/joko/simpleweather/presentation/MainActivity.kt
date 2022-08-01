@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     companion object {
-        private const val FORM_ROUTE = "form"
+        const val FORM_ROUTE = "form"
         const val DETAIL_ROUTE = "detail/{c}/{f}"
     }
 
@@ -48,7 +48,16 @@ class MainActivity : BaseActivity() {
                             startDestination = FORM_ROUTE,
                         ) {
                             composable(route = FORM_ROUTE) {
-                                FormScreen(formViewModel, navController)
+                                FormScreen(formViewModel, navToDetail = {
+                                    val route = DETAIL_ROUTE
+                                        .replace("{c}", it.celsius.toString())
+                                        .replace("{f}", it.fahrenheit.toString())
+
+                                    navController.navigate(route) {
+                                        popUpTo(FORM_ROUTE)
+                                        launchSingleTop = true
+                                    }
+                                })
                             }
                             composable(
                                 route = DETAIL_ROUTE,

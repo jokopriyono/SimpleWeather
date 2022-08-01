@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import com.joko.base.viewmodel.BaseViewModel
+import com.joko.domain.entity.TemperatureEntity
 import com.joko.domain.usecase.WeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -50,12 +51,10 @@ class FormViewModel @Inject constructor(
         }
     }
 
-    fun fetchWeather() {
+    fun fetchWeather(onSuccess: (TemperatureEntity) -> Unit) {
         viewModelScope.launch {
             weatherUseCase.getCurrentWeather(uiState.selectedCity?.name ?: "").collectResult(
-                onSuccess = {
-                    uiState = uiState.copy(temperature = it)
-                },
+                onSuccess = onSuccess,
                 onError = {
                 }
             )

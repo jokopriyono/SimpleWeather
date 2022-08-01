@@ -14,10 +14,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.joko.simpleweather.presentation.MainActivity
+import com.joko.domain.entity.TemperatureEntity
 import com.joko.simpleweather.ui.component.JoDropDown
 import com.joko.simpleweather.ui.component.JoLoading
 import com.joko.simpleweather.ui.component.JoTextField
@@ -31,28 +28,12 @@ private fun PreviewFormScreen() {
 @Composable
 fun FormScreen(
     viewModel: FormViewModel = hiltViewModel(),
-    navController: NavHostController = rememberNavController(),
+    navToDetail: (TemperatureEntity) -> Unit = {}
 ) {
     val uiState = viewModel.uiState
     val cityFocus by remember { mutableStateOf(FocusRequester()) }
     var isFirstTime by remember { mutableStateOf(false) }
 
-    LaunchedEffect(uiState.temperature) {
-        if (uiState.temperature != null) {
-            val c = uiState.temperature.celsius
-            val f = uiState.temperature.fahrenheit
-            val route = MainActivity.DETAIL_ROUTE
-                .replace("{c}", c.toString())
-                .replace("{f}", f.toString())
-            navController.navigate(route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                launchSingleTop = true
-                restoreState = true
-            }
-        }
-    }
     LaunchedEffect(isFirstTime) {
         if (!isFirstTime) {
             viewModel.setState(uiState)
@@ -101,7 +82,7 @@ fun FormScreen(
                 )
             },
             onActionClick = {
-                if (uiState.formValid) viewModel.fetchWeather()
+                if (uiState.formValid) viewModel.fetchWeather(navToDetail)
             },
             errorMessage = uiState.cityError,
         )
@@ -110,7 +91,7 @@ fun FormScreen(
                 .fillMaxWidth()
                 .padding(top = 10.dp),
             onClick = {
-                if (uiState.formValid) viewModel.fetchWeather()
+                if (uiState.formValid) viewModel.fetchWeather(navToDetail)
             },
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
             enabled = uiState.formValid
