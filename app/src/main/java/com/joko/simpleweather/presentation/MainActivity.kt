@@ -1,4 +1,4 @@
-package com.joko.simpleweather.ui.presentation
+package com.joko.simpleweather.presentation
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -6,8 +6,8 @@ import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import com.joko.base.activity.BaseActivity
-import com.joko.simpleweather.ui.presentation.form.FormScreen
-import com.joko.simpleweather.ui.presentation.form.FormViewModel
+import com.joko.simpleweather.presentation.form.FormScreen
+import com.joko.simpleweather.presentation.form.FormViewModel
 import com.joko.simpleweather.ui.theme.SimpleWeatherTheme
 import dagger.hilt.android.AndroidEntryPoint
 

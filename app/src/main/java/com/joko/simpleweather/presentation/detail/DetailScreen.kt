@@ -1,4 +1,4 @@
-package com.joko.simpleweather.ui.presentation.detail
+package com.joko.simpleweather.presentation.detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

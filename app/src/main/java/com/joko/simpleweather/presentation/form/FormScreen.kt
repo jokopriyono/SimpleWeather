@@ -1,4 +1,4 @@
-package com.joko.simpleweather.ui.presentation.form
+package com.joko.simpleweather.presentation.form
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable

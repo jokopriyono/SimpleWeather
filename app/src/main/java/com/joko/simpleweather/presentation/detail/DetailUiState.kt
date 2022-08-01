@@ -1,4 +1,4 @@
-package com.joko.simpleweather.ui.presentation.detail
+package com.joko.simpleweather.presentation.detail
 
 data class DetailUiState(
     val celsius: String = "",
