@@ -1,8 +1,7 @@
 package com.joko.simpleweather.di
 
-import android.app.Application
 import com.joko.domain.di.DomainModule
-import com.joko.simpleweather.SimpleApp
+import com.joko.simpleweather.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,15 +16,11 @@ object AppModule {
     @Provides
     @Singleton
     @Named("baseUrl")
-    fun provideBaseUrl(
-        application: Application,
-    ): String = (application as SimpleApp).baseUrl
+    fun provideBaseUrl(): String = BuildConfig.BASE_URL
 
     @Provides
     @Singleton
     @Named("apiKey")
-    fun provideApiKey(
-        application: Application,
-    ): String = (application as SimpleApp).apiKey
+    fun provideApiKey(): String = BuildConfig.API_KEY
 
 }
