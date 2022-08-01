@@ -10,8 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
@@ -46,9 +44,13 @@ fun JoTextField(
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+    ) {
         OutlinedTextField(
-            modifier = Modifier.onFocusChanged { isFocused = it.isFocused },
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged { isFocused = it.isFocused },
             value = text,
             onValueChange = onChange,
             label = {
